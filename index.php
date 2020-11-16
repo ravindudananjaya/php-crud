@@ -4,7 +4,7 @@
 		
 		$id = $_GET['edit'];
 
-		
+
 
 		$rec = mysqli_query($db, "SELECT * FROM info WHERE id=$id");
 		$record = mysqli_fetch_array($rec);
@@ -19,6 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 
 
 	<title></title>
