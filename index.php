@@ -1,25 +1,12 @@
 <?php include('server.php'); 
 
-	if (isset($_GET['edit'])) {
-		
-		$id = $_GET['edit'];
-
-
-
-		$rec = mysqli_query($db, "SELECT * FROM info WHERE id=$id");
-		$record = mysqli_fetch_array($rec);
-		$name = $record['name'];
-		$address = $record['address'];
-		$id = $record['id'];
-
-
-	}
+	
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	
+
 
 
 	<title></title>
@@ -39,7 +26,7 @@
 <div class="container" >
 	<div class="jumbotron" id="form">
 		<form method="post" action="server.php">
-		<input type="" name="id" value="<?php echo $id; ?>">
+		<input type="index" name="id" value="<?php echo $id; ?>">
 		  <div class="form-group">
 		    <label>Name</label>
 		    <input type="text" class="form-control"name="name" value="<?php echo $name; ?>" >
@@ -50,11 +37,16 @@
 		  </div>
 		  <div class="input-group">
 
-		  <?php if ($edit_state == false): ?>
-		  		<button type="submit" name="save" class="btn btn-dark">Submit</button>
-			<php else : ?>
-				<button type="submit" name="update" class="btn btn-dark">Update</button>
-		  <?php endif ?>
+		  <!--<?php if ($id = 0): ?>
+		  		
+		  	<?php else: ?>
+		  						
+		  <?php endif ?>-->
+		  <button type="submit" name="save" class="btn btn-dark">Submit</button>
+		  <button type="submit" name="update" class="btn btn-dark">Update</button>
+		  <button type="submit" name="delete" class="btn btn-dark">delete</button>
+
+
 
 		  </div>
 		</form>

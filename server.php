@@ -6,6 +6,7 @@
 	$address = "";
 	$id = 0;
 	$edit_state = false;
+	$idd = "<";
 
 	//connect to db
 	$db = mysqli_connect('localhost','root','','crud');
@@ -24,13 +25,43 @@
 	}
 
 
-	//if (isset($_POST['update'])) {
-	//	$name = mysql_real_escape_string($_POST['name']);
-	//	$address = mysql_real_escape_string($_POST['address']);
-	//	$id = mysql_real_escape_string($_POST['id']);
+	if (isset($_GET['edit'])) {
+		
+		$id = $_GET['edit'];
 
 
-	//}
+
+		$rec = mysqli_query($db, "SELECT * FROM info WHERE id=$id");
+		$record = mysqli_fetch_array($rec);
+		$name = $record['name'];
+		$address = $record['address'];
+		$id = $record['id'];
+
+
+
+
+	}
+
+	if (isset($_POST['update'])) {
+		$name = $_POST['name'];
+		$address = $_POST['address'];
+		$id = $_POST['id'];
+		
+		$query = "UPDATE info SET name = '$name', address = '$address' WHERE  id= '$id'";
+		mysqli_query($db, $query);
+		$id= 0;
+		header('location: index.php');
+
+
+		
+
+	}
+
+	if (isset($_POST['delete'])) {
+		//$query = "DELETE FROM info WHERE id= 5";
+		 $sql = "DELETE FROM info WHERE id=5";	
+		header('location: index.php');
+	}
 
 
 	//retrieve records
