@@ -26,7 +26,7 @@
 <div class="container" >
 	<div class="jumbotron" id="form">
 		<form method="post" action="server.php">
-		<input type="index" name="id" value="<?php echo $id; ?>">
+		<input type="hidden" name="id" value="<?php echo $id; ?>">
 		  <div class="form-group">
 		    <label>Name</label>
 		    <input type="text" class="form-control"name="name" value="<?php echo $name; ?>" >
@@ -37,14 +37,16 @@
 		  </div>
 		  <div class="input-group">
 
-		  <!--<?php if ($id = 0): ?>
-		  		
-		  	<?php else: ?>
-		  						
-		  <?php endif ?>-->
-		  <button type="submit" name="save" class="btn btn-dark">Submit</button>
-		  <button type="submit" name="update" class="btn btn-dark">Update</button>
-		  <button type="submit" name="delete" class="btn btn-dark">delete</button>
+		 <?php if ($edit_state == true): ?>
+			<button type="submit" name="update" class="btn btn-dark">Update</button>
+			<button type="submit" name="delet" class="btn btn-dark" style="margin-left: 5px;">delete</button>
+		 <?php endif ?>
+
+		 <?php if ($edit_state == false): ?>
+			<button type="submit" name="save" class="btn btn-dark">Submit</button>
+		 <?php endif ?>
+
+		 
 
 
 
@@ -93,7 +95,7 @@
 					<a class="btn btn-primary" href="index.php?edit=<?php echo $row['id']; ?>" >Edit</a>
 				
 				
-					<a class="btn btn-danger" href="#" name="delete" >Delete</a>
+					<!--<a class="btn btn-danger" href="index.php?del=<?php echo $row['id']; ?>" name="delete" >Delete</a>-->
 				</td>
 			</tr>
 		<?php } ?>

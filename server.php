@@ -29,7 +29,7 @@
 		
 		$id = $_GET['edit'];
 
-
+		$edit_state = true;
 
 		$rec = mysqli_query($db, "SELECT * FROM info WHERE id=$id");
 		$record = mysqli_fetch_array($rec);
@@ -57,12 +57,27 @@
 
 	}
 
-	if (isset($_POST['delete'])) {
-		//$query = "DELETE FROM info WHERE id= 5";
-		 $sql = "DELETE FROM info WHERE id=5";	
+	
+	if (isset($_GET['del'])) {
+		$id = $_GET['del'];
+		mysqli_query($db, "DELETE FROM info WHERE id= '$id'");
+		//$query = "DELETE FROM info WHERE id= '$id'";
 		header('location: index.php');
+		
+
 	}
 
+	if (isset($_POST['delet'])) {
+		
+		$id = $_POST['id'];
+		mysqli_query($db, "DELETE FROM info WHERE id= $id");
+
+		header('location: index.php');
+		$_SESSION['message'] = "Address deleted!"; 
+
+		
+
+	}
 
 	//retrieve records
 	$result = mysqli_query($db, "SELECT * FROM info");
