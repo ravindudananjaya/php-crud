@@ -18,7 +18,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color:	#696969;">
 
 
 
@@ -29,26 +29,32 @@
 		<input type="hidden" name="id" value="<?php echo $id; ?>">
 		  <div class="form-group">
 		    <label>Name</label>
-		    <input type="text" class="form-control"name="name" value="<?php echo $name; ?>" >
+		    <input type="text" class="form-control"name="name" placeholder="<?php echo $name; ?>" value="<?php echo $name; ?>" >
 		  </div>
 		  <div class="form-group">
 		    <label>Address</label>
-		    <input type="text" class="form-control"name="address" value="<?php echo $address; ?>" placeholder="<?php echo $address; ?>"; >
+		    <input type="text" class="form-control"name="address" placeholder="<?php echo $address; ?>"
+		    value="<?php echo $address; ?>"; >
 		  </div>
 		  <div class="input-group">
 
 		 <?php if ($edit_state == true): ?>
 			<button type="submit" name="update" class="btn btn-dark">Update</button>
-			<button type="submit" name="delet" class="btn btn-dark" style="margin-left: 5px;">delete</button>
+			
 		 <?php endif ?>
 
 		 <?php if ($edit_state == false): ?>
-			<button type="submit" name="save" class="btn btn-dark">Submit</button>
+			<button type="submit" name="save" class="btn btn-dark" >Submit</button>
 		 <?php endif ?>
 
+		
+		  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin-left: 5px;">
+		    Data Table 
+		  </button>
 		 
 
-
+	
+		
 
 		  </div>
 		</form>
@@ -70,15 +76,17 @@
 	<?php } ?>
 </div>
 
-
-
 <div class="container">
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+  	<div class="container">
 	
 
 	<table class="table ">
 		<thead class="thead-dark">
 			<tr>
-				<th scope="col">ID</th>
+				
 				<th scope="col">Name</th>
 				<th scope="col" >Address</th>
 				<th scope="col" style="text-align: center">Action</th>
@@ -87,15 +95,21 @@
 		<tbody >
 			<?php while ($row = mysqli_fetch_array($result)) { ?>
 			<tr>
-				<td><?php echo $row['id']; ?></td>
+				
 				<td><?php echo $row['name']; ?></td>
 				<td><?php echo $row['address']; ?></td>
 				<td style="text-align: center">
 					<?php $id =  $row['id']; ?>
+
+				 <form method="post" action="server.php">
 					<a class="btn btn-primary" href="index.php?edit=<?php echo $row['id']; ?>" >Edit</a>
+					<a class="btn btn-danger" href="index.php?del=<?php echo $row['id']; ?>" name="delete " >Delete</a>
+				</form>
+					
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
 				
-				
-					<!--<a class="btn btn-danger" href="index.php?del=<?php echo $row['id']; ?>" name="delete" >Delete</a>-->
 				</td>
 			</tr>
 		<?php } ?>
@@ -103,10 +117,71 @@
 	</table>   
 	   
 </div>
-
-<div class="container">
-	<button class="btn btn-dark"><a href="index.php">back</a></button>
+  </div>
 </div>
+</div>
+
+  	
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="container">
+	
+
+	<table class="table ">
+		<thead class="thead-dark">
+			<tr>
+				
+				<th scope="col">Name</th>
+				<th scope="col" >Address</th>
+				<th scope="col" style="text-align: center">Action</th>
+			</tr>
+		</thead>
+		<tbody >
+			<?php while ($row = mysqli_fetch_array($result)) { ?>
+			<tr>
+				
+				<td><?php echo $row['name']; ?></td>
+				<td><?php echo $row['address']; ?></td>
+				<td style="text-align: center">
+					<?php $id =  $row['id']; ?>
+
+				<form method="post" action="server.php">
+					<a class="btn btn-primary" href="index.php?edit=<?php echo $row['id']; ?>" >Edit</a>
+				
+					<a class="btn btn-danger" href="index.php?del=<?php echo $row['id']; ?>" name="delete " >Delete</a>
+				</form>
+				</td>
+			</tr>
+		<?php } ?>
+		</tbody>
+	</table>   
+	   
+</div>-->
+
+
 
 
 

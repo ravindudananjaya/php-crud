@@ -62,22 +62,12 @@
 		$id = $_GET['del'];
 		mysqli_query($db, "DELETE FROM info WHERE id= '$id'");
 		//$query = "DELETE FROM info WHERE id= '$id'";
+		$_SESSION['msg'] = "<div class='display-4'>Deleted</div>";
 		header('location: index.php');
 		
 
 	}
 
-	if (isset($_POST['delet'])) {
-		
-		$id = $_POST['id'];
-		mysqli_query($db, "DELETE FROM info WHERE id= $id");
-
-		header('location: index.php');
-		$_SESSION['message'] = "Address deleted!"; 
-
-		
-
-	}
 
 	//retrieve records
 	$result = mysqli_query($db, "SELECT * FROM info");
